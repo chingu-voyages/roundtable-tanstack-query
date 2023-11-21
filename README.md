@@ -2,6 +2,14 @@
 
 Chingu Roundtable - Tanstack Query 
 
+## Contents
+
+- [Stack](#stack)
+- [Topic](#topic)
+- [Installation](#installation)
+- [Project Structure](#project-structure)
+- [Author](#author)
+
 ## Stack
 
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
@@ -36,7 +44,7 @@ Once the project is installed, you can run the following command to start the se
 npm run dev
 ```
 
-# Project Structure
+## Project Structure
 
 In order for this project be able to work as a resource for the Chingu community, the project will have the following branches:
 
@@ -44,3 +52,6 @@ In order for this project be able to work as a resource for the Chingu community
 2. **tanstack** - The version of the project using Tanstack Query
 3. **redux** - The version of the project using Redux
 
+## Author
+
+This chingu roundtable was created by [Andres Court](https://github.com/alcb1310) for the [Chingu Community](https://chingu.io)
