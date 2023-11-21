@@ -10,9 +10,37 @@ Chingu Roundtable - Tanstack Query
 ![Typescript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
 ![Tanstack](https://img.shields.io/badge/tanstack-%23EAB308.svg?style=for-the-badge&logo=tanstack&logoColor=white)
+![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
 
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+
+![Neovim](https://img.shields.io/badge/NeoVim-%2357A143.svg?&style=for-the-badge&logo=neovim&logoColor=white)
 
 ## Topic
 
 In this roundtable we will be discussing about managing async state within a react application using Tanstack Query.
+
+## Instalation
+
+To install the project, run the following command:
+
+```bash
+git clone https://github.com/chingu-voyages/roundtable-tanstack-query.git
+cd roundtable-tanstack-query
+npm install
+```
+
+Once the project is installed, you can run the following command to start the server:
+
+```bash
+npm run dev
+```
+
+# Project Structure
+
+In order for this project be able to work as a resource for the Chingu community, the project will have the following branches:
+
+1. **plain** - The plain version of the project
+2. **tanstack** - The version of the project using Tanstack Query
+3. **redux** - The version of the project using Redux
+
