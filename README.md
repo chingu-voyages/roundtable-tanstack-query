@@ -28,7 +28,7 @@ Chingu Roundtable - Tanstack Query
 
 In this roundtable we will be discussing about managing async state within a react application using Tanstack Query.
 
-## Instalation
+## Installation
 
 To install the project, run the following command:
 
