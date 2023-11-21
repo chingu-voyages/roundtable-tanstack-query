@@ -12,16 +12,19 @@ function App() {
      useEffect(() => {
           setLoading(true)
           setIsError(false)
+          setTodos([])
+          setErrorMessage("")
 
           getInfo().then((data) => {
                setTodos(data)
           }).catch((err) => {
                setIsError(true)
                setErrorMessage(err.message)
+               setTodos([])
           })
 
           setLoading(false)
-     }, [todos])
+     }, [])
 
      if (loading) {
           return (
