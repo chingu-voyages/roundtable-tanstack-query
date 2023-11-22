@@ -49,7 +49,7 @@ npm run dev
 
 In order for this project be able to work as a resource for the Chingu community, the project will have the following branches:
 
-1. **plain** - The plain version of the project
+1. **main** - The plain version of the project
 2. **tanstack** - The version of the project using Tanstack Query
 3. **redux** - The version of the project using Redux
 
