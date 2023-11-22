@@ -8,6 +8,7 @@ Chingu Roundtable - Tanstack Query
 - [Topic](#topic)
 - [Installation](#installation)
 - [Project Structure](#project-structure)
+- [Resources](#resources)
 - [Author](#author)
 
 ## Stack
@@ -51,6 +52,18 @@ In order for this project be able to work as a resource for the Chingu community
 1. **plain** - The plain version of the project
 2. **tanstack** - The version of the project using Tanstack Query
 3. **redux** - The version of the project using Redux
+
+## Resources
+
+- [Tanstack Query](https://tanstack.com/query/latest)
+- [Tanstack Query GitHub](https://github.com/tanstack/query)
+- [Tanstack Query 4](https://youtu.be/SPPQm0dvEes?si=PGFzu5XkffyiThDl)
+
+- [Redux](https://redux-toolkit.js.org/)
+- [RTK Overview](https://redux-toolkit.js.org/rtk-query/overview)
+- [Redux Redux GitHub](https://github.com/reduxjs/redux)
+- [Learn Modern Redux](https://youtu.be/9zySeP5vH9c?si=SQr2IQwXI1_1m-RO)
+
 
 ## Author
 
