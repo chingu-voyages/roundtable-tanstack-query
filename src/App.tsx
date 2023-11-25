@@ -1,32 +1,12 @@
-import { useEffect, useState } from "react"
 import TodoList from "./components/todolist"
-import { TodoType } from "./types/type"
-import { getInfo } from "./utils/getInfo"
+import { useGetTodos } from "./hooks/queryHook"
+import { getInfo, getErrorInfo } from "./utils/getInfo"
 
 function App() {
-     const [todos, setTodos] = useState<TodoType[]>([])
-     const [loading, setLoading] = useState(false)
-     const [isError, setIsError] = useState(false)
-     const [errorMessage, setErrorMessage] = useState("")
+     const data = useGetTodos({ limit: 10, todoFn: getErrorInfo })
 
-     useEffect(() => {
-          setLoading(true)
-          setIsError(false)
-          setTodos([])
-          setErrorMessage("")
 
-          getInfo().then((data) => {
-               setTodos(data)
-          }).catch((err) => {
-               setIsError(true)
-               setErrorMessage(err.message)
-               setTodos([])
-          })
-
-          setLoading(false)
-     }, [])
-
-     if (loading) {
+     if (data.loading) {
           return (
                <div className="bg-gradient-to-br from-purple-500 to-purple-900 min-h-screen">
                     <div className="pt-5 text-slate-100 text-center  uppercase fontextrabold">Loading...</div>
@@ -34,10 +14,10 @@ function App() {
           )
      }
 
-     if (isError) {
+     if (data.isError) {
           return (
                <div className="bg-gradient-to-br from-purple-500 to-purple-900 min-h-screen">
-                    <div className="pt-5 text-slate-100 text-center fontextrabold">Error: {errorMessage}</div>
+                    <div className="pt-5 text-slate-100 text-center fontextrabold">Error: {data.errorMessage}</div>
                </div>
           )
      }
@@ -47,7 +27,7 @@ function App() {
                <h1 className="pt-5 text-slate-100 text-center text-3xl uppercase fontextrabold">Todos</h1>
 
                <div className="container mx-auto p-5">
-                    <TodoList todoList={todos} />
+                    <TodoList todoList={data.todos} />
                </div>
           </div>
      )
