@@ -1,30 +1,15 @@
-import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import TodoList from "./components/todolist"
-import { TodoType } from "./types/type"
-import { getInfo } from "./utils/getInfo"
+import { useGetInfoQuery } from "./redux/apiSlice/slice"
+import { login } from "./redux/login/loginSlice"
+import { RootState } from "./redux/store"
 
 function App() {
-     const [todos, setTodos] = useState<TodoType[]>([])
-     const [loading, setLoading] = useState(false)
-     const [isError, setIsError] = useState(false)
-     const [errorMessage, setErrorMessage] = useState("")
+     const loginUser = useSelector((state: RootState) => state.login.user)
+     const dispatch = useDispatch()
 
-     useEffect(() => {
-          setLoading(true)
-          setIsError(false)
-          setTodos([])
-          setErrorMessage("")
-
-          getInfo().then((data) => {
-               setTodos(data)
-          }).catch((err) => {
-               setIsError(true)
-               setErrorMessage(err.message)
-               setTodos([])
-          })
-
-          setLoading(false)
-     }, [])
+     const data = useGetInfoQuery(10)
+     const { isLoading: loading, isError, error, data: todos } = data
 
      if (loading) {
           return (
@@ -37,7 +22,7 @@ function App() {
      if (isError) {
           return (
                <div className="bg-gradient-to-br from-purple-500 to-purple-900 min-h-screen">
-                    <div className="pt-5 text-slate-100 text-center fontextrabold">Error: {errorMessage}</div>
+                    <div className="pt-5 text-slate-100 text-center fontextrabold">Error: {error}</div>
                </div>
           )
      }
@@ -45,6 +30,9 @@ function App() {
      return (
           <div className="bg-gradient-to-br from-purple-500 to-purple-900 min-h-screen">
                <h1 className="pt-5 text-slate-100 text-center text-3xl uppercase fontextrabold">Todos</h1>
+
+               <button onClick={() => dispatch(login("user"))}>Login</button>
+               {loginUser}
 
                <div className="container mx-auto p-5">
                     <TodoList todoList={todos} />
