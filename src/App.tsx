@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react"
+import TodoList from "./components/todolist"
+import { TodoType } from "./types/type"
+import { getInfo } from "./utils/getInfo"
 
 function App() {
-  const [count, setCount] = useState(0)
+     const [todos, setTodos] = useState<TodoType[]>([])
+     const [loading, setLoading] = useState(false)
+     const [isError, setIsError] = useState(false)
+     const [errorMessage, setErrorMessage] = useState("")
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+     useEffect(() => {
+          setLoading(true)
+          setIsError(false)
+          setTodos([])
+          setErrorMessage("")
+
+          getInfo().then((data) => {
+               setTodos(data)
+          }).catch((err) => {
+               setIsError(true)
+               setErrorMessage(err.message)
+               setTodos([])
+          })
+
+          setLoading(false)
+     }, [])
+
+     if (loading) {
+          return (
+               <div className="bg-gradient-to-br from-purple-500 to-purple-900 min-h-screen">
+                    <div className="pt-5 text-slate-100 text-center  uppercase fontextrabold">Loading...</div>
+               </div>
+          )
+     }
+
+     if (isError) {
+          return (
+               <div className="bg-gradient-to-br from-purple-500 to-purple-900 min-h-screen">
+                    <div className="pt-5 text-slate-100 text-center fontextrabold">Error: {errorMessage}</div>
+               </div>
+          )
+     }
+
+     return (
+          <div className="bg-gradient-to-br from-purple-500 to-purple-900 min-h-screen">
+               <h1 className="pt-5 text-slate-100 text-center text-3xl uppercase fontextrabold">Todos</h1>
+
+               <div className="container mx-auto p-5">
+                    <TodoList todoList={todos} />
+               </div>
+          </div>
+     )
 }
 
 export default App
