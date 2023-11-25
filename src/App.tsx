@@ -1,30 +1,14 @@
-import { useEffect, useState } from "react"
 import TodoList from "./components/todolist"
-import { TodoType } from "./types/type"
+import { useQuery } from "@tanstack/react-query"
 import { getInfo } from "./utils/getInfo"
 
 function App() {
-     const [todos, setTodos] = useState<TodoType[]>([])
-     const [loading, setLoading] = useState(false)
-     const [isError, setIsError] = useState(false)
-     const [errorMessage, setErrorMessage] = useState("")
+     const todoList = useQuery({
+          queryKey: ["todos"],
+          queryFn: () => getInfo(),
+     })
 
-     useEffect(() => {
-          setLoading(true)
-          setIsError(false)
-          setTodos([])
-          setErrorMessage("")
-
-          getInfo().then((data) => {
-               setTodos(data)
-          }).catch((err) => {
-               setIsError(true)
-               setErrorMessage(err.message)
-               setTodos([])
-          })
-
-          setLoading(false)
-     }, [])
+     const { data: todos = [], isLoading: loading, isError, error } = todoList
 
      if (loading) {
           return (
@@ -37,7 +21,7 @@ function App() {
      if (isError) {
           return (
                <div className="bg-gradient-to-br from-purple-500 to-purple-900 min-h-screen">
-                    <div className="pt-5 text-slate-100 text-center fontextrabold">Error: {errorMessage}</div>
+                    <div className="pt-5 text-slate-100 text-center fontextrabold">Error: {error}</div>
                </div>
           )
      }
